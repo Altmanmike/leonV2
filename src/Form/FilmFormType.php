@@ -41,7 +41,9 @@ class FilmFormType extends AbstractType
                     'placeholder' => 'Couverture du film'
                 ],
                 'label' => 'Couverture',
-                'label_attr' => ['class' => 'my-2']
+                'label_attr' => ['class' => 'my-2'],
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('synopsis', TextareaType::class, [
                 'attr' => [

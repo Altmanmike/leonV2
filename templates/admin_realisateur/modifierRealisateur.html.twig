@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Realisateur{% endblock %}
+
+{% block body %}
+
+<div class="container my-5">    
+
+    <h3>Modifier ce réalisateur</h3>
+    
+    {% if realisateur %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Nom</th> 
+            </tr>
+        </thead>
+        <tbody>            
+            <tr>      
+                <td>{{ realisateur.id }}</td>
+                <td>{{ realisateur.nom }}</td>
+            </tr>            
+        </tbody>
+    </table>
+    {% endif %}
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <input class="btn btn-primary" type="submit">
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

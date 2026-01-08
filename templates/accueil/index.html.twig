@@ -9,33 +9,36 @@
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">N°</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Annee</th>
-                <th scope="col">Image</th>
-                <th scope="col">Synopsis</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Realisateur</th>
-                <th scope="col">Cree le</th>
-                <th scope="col">Modifie le</th>
+                    <th scope="col">N°</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Annee</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Synopsis</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Realisateur</th>
+                    <th scope="col">Cree le</th>
+                    <th scope="col">Modifie le</th>
+                    <th scope="col" colspan="2">Action</th>                    
                 </tr>
             </thead>
             <tbody>
                 {% for film in films %}
                 <tr>      
-                <td>{{ film.id }}</td>
-                <td>{{ film.titre }}</td>
-                <td>{{ film.annee }}</td>
-                <td>{{ film.image }}</td>                
-                <td>{{ film.synopsis }}</td>
-                <td>
-                    {% for g in film.genres %}
-                        <span>{{ g.titre }}</span>
-                    {% endfor %}
-                </td>
-                <td>{{ film.realisateur.nom }}</td>
-                <td>{{ film.createdAt|date('d/m/Y') }}</td>
-                <td>{{ film.updatedAt|date('d/m/Y') }}</td>
+                    <td>{{ film.id }}</td>
+                    <td>{{ film.titre }}</td>
+                    <td>{{ film.annee }}</td>
+                    <td>{{ film.image }}</td>                
+                    <td>{{ film.synopsis }}</td>
+                    <td>
+                        {% for g in film.genres %}
+                            <span>{{ g.titre }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>{{ film.realisateur.nom }}</td>
+                    <td>{{ film.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ film.updatedAt|date('d/m/Y') }}</td>
+                    <td><a href="{{ path('app_modifier_film', {id: film.id}) }}" ><i class="bi bi-pen"></i></a></td>
+                    <td><a href="{{ path('app_supprimer_film', {id: film.id}) }}" ><i class="bi bi-trash"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

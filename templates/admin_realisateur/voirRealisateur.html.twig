@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Voir Realisateur{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5">
+
+        <h3>Informations du réalisateur</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">E</th>
+                    <th scope="col">X</th>
+                </tr>
+            </thead>
+            <tbody>                
+                <tr>      
+                    <td>{{ realisateur.id }}</td>
+                    <td>{{ realisateur.nom }}</td>                               
+                    <td><a href="{{ path('app_modifier_realisateur', {id: realisateur.id}) }}" ><i class="bi bi-pen"></i></a></td>
+                    <td><a href="{{ path('app_supprimer_realisateur', {id: realisateur.id}) }}" ><i class="bi bi-trash"></i></a></td>
+                </tr> 
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

@@ -93,10 +93,9 @@ final class FilmController extends AbstractController
     #[Route('/modifierFilm/{id}', name: 'app_modifier_film')]
     public function modifierFilm(FilmRepository $repoF, GenreRepository $repoG, EntityManagerInterface $em, Request $request, $id): Response
     {        
-        $film = $repoF->find($id);
+        $film = $repoF->find($id);        
         
-        $filmUpdated = new Film();
-        $form = $this->createForm(FilmFormType::class, $filmUpdated);
+        $form = $this->createForm(FilmFormType::class, $film);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -109,7 +108,7 @@ final class FilmController extends AbstractController
                     $film->setAnnee(htmlspecialchars(trim($form->get('annee')->getData())));
                 }
                 if ($form->get('image')->getData()) {
-                    $film->setImage(htmlspecialchars(trim($form->get('image')->getData())));
+                    $film->setImage(htmlspecialchars(trim($form->get('image')->getData())));                    
                 }
                 if ($form->get('synopsis')->getData()) {
                     $film->setSynopsis(htmlspecialchars(trim($form->get('synopsis')->getData())));
@@ -118,10 +117,6 @@ final class FilmController extends AbstractController
                     $film->setRealisateur($form->get('realisateur')->getData());
                 }
                 if ($form->get('genres')->getData()) {                    
-                    foreach ($film->getGenres() as $gId) {
-                        $genre = $repoG->find($gId);
-                        $film->removeGenre($genre);
-                    }
                     foreach ($form->get('genres')->getData() as $value) {
                         $film->addGenre($value);
                     }
@@ -143,9 +138,10 @@ final class FilmController extends AbstractController
         }
         
         return $this->render('film/modifierFilm.html.twig', [
-            'controller_name' => 'FilmController',            
+            'controller_name' => 'FilmController',
+            'film' => $film,          
             'form' => $form->createView(),
-            'film' => $film
+            
         ]);
     }
 }
