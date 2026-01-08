@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ORM\Entity(repositoryClass: FilmRepository::class)]
 class Film
@@ -37,10 +38,12 @@ class Film
     /**
      * @var Collection<int, Genre>
      */
+    #[Ignore]
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'films')]
     private Collection $genres;
 
     #[ORM\ManyToOne(inversedBy: 'films')]
+    #[Ignore]
     private ?Realisateur $realisateur = null;
 
     public function __construct() {
