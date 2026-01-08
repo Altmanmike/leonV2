@@ -96,11 +96,31 @@ final class AdminRealisateurController extends AbstractController
         $form = $this->createForm(RealisateurFormType::class, $realisateur);
         $form->handleRequest($request);
         
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            try {
+                if ($form->get('nom')->getData()) {
+                    $realisateur->setNom(htmlspecialchars(trim($form->get('nom')->getData())));
+                    
+                    $em->persist($realisateur);
+                    $em->flush();
+                    $this->addFlash('success', 'Réalisateur modifié.');
+
+                    return $this->redirectToRoute('app_admin_realisateur');
+                }                
+                
+            } catch (\Exception $e) {
+                $this->addFlash('error', $e->getMessage());
+                
+                return $this->redirectToRoute('app_admin_realisateur');               
+            }
+        }
+            
         return $this->render('admin_realisateur/modifierRealisateur.html.twig', [
             'controller_name' => 'AdminRealisateurController',
             'realisateur' => $realisateur,
             'form' => $form->createView(),
-        ]);
+        ]);        
     }
     
 }

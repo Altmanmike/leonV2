@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier Realisateur{% endblock %}
+{% block title %}Modifier Genre{% endblock %}
 
 {% block body %}
 
     <div class="container my-5">    
 
-        <h3>Modifier ce réalisateur</h3>
+        <h3>Modifier ce genre</h3>
         
-        {% if realisateur %}
+        {% if genre %}
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">N°</th>
-                    <th scope="col">Nom</th> 
+                    <th scope="col">Titre</th> 
                 </tr>
             </thead>
             <tbody>            
                 <tr>      
-                    <td>{{ realisateur.id }}</td>
-                    <td>{{ realisateur.nom }}</td>
+                    <td>{{ genre.id }}</td>
+                    <td>{{ genre.titre }}</td>
                 </tr>            
             </tbody>
         </table>

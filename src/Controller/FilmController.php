@@ -91,7 +91,7 @@ final class FilmController extends AbstractController
     }
 
     #[Route('/modifierFilm/{id}', name: 'app_modifier_film')]
-    public function modifierFilm(FilmRepository $repoF, GenreRepository $repoG, EntityManagerInterface $em, Request $request, $id): Response
+    public function modifierFilm(FilmRepository $repoF, EntityManagerInterface $em, Request $request, $id): Response
     {        
         $film = $repoF->find($id);        
         

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin tous Genre{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5">
+
+        <h3>Ajouter un genre <a href="{{ path('app_ajouter_genre') }}" ><i class="bi bi-plus-square-fill"></i></a></h3>       
+
+        {% if genres %}
+        <h2>Liste des genres</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">E</th>
+                    <th scope="col">X</th>
+                </tr>
+            </thead>
+            <tbody>                
+                {% for genre in genres %}
+                <tr>                    
+                    <td>{{ genre.id }}</td>
+                    <td>{{ genre.titre }}</td>                    
+                    <td><a href="{{ path('app_modifier_genre', {id: genre.id}) }}" ><i class="bi bi-pen"></i></a></td>
+                    <td><a href="{{ path('app_supprimer_genre', {id: genre.id}) }}" ><i class="bi bi-trash"></i></a></td>
+                </tr>
+                {% endfor %}                
+            </tbody>
+        </table>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
