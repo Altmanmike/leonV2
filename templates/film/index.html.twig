@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film{% endblock %}
+
+{% block body %}
+
+<div class="container my-5">
+
+    {% if film %}
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Annee</th>
+            <th scope="col">Image</th>
+            <th scope="col">Synopsis</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Realisateur</th>
+            <th scope="col">Cree le</th>
+            <th scope="col">Modifie le</th>
+            </tr>
+        </thead>
+        <tbody>            
+            <tr>      
+            <td>{{ film.id }}</td>
+            <td>{{ film.titre }}</td>
+            <td>{{ film.annee }}</td>
+            <td>{{ film.image }}</td>
+            <td>{{ film.synopsis }}</td>
+            <td>
+                    {% for g in film.genres %}
+                        <span>{{ g.titre }}</span>
+                    {% endfor %}
+                </td>
+                <td>{{ film.realisateur.nom }}</td>
+            <td>{{ film.createdAt|date('d/m/Y') }}</td>
+            <td>{{ film.updatedAt|date('d/m/Y') }}</td>
+            </tr>            
+        </tbody>
+    </table>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechercher{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5">
+
+        <form class="form" action="{{ path('app_rechercher') }}" method="POST">
+            <input name="titre" value="" class="form-control" type="text" placeholder="Recherche un film..">
+            <button class="btn btn-primary mt-2 mb-5" type="submit">Soumettre</button>
+        </form>
+        
+        {% if film %}
+        <div class="card" style="width: 18rem;">            
+            <div class="card-body">
+                <h5 class="card-title">{{ film.titre }}</h5>                
+                <p class="badge text-bg-secondary">{{ film.annee }}</p>
+            </div>
+        </div>
+        {% endif %}  
+
+    </div>
+
+{% endblock %}
